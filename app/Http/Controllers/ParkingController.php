@@ -55,9 +55,9 @@ class ParkingController extends Controller
 
         try {
             ParkingPayment::create($paymentDetails);
-            return response()->json(['message' => 'Payment Details Stored Successfully!'], 201);
+            return response()->json(['message' => 'Success'], 201);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Failed to Store Payment Details: ' . $e->getMessage()], 500);
+            return response()->json(['message' => 'Failed' . $e->getMessage()], 500);
         }
     }
 
@@ -70,9 +70,9 @@ class ParkingController extends Controller
         $payment = PaymentDetail::where('card_number', $request->card_number)->first();
 
         if ($payment) {
-            return response()->json(['message' => 'Payment Found', 'payment' => $payment], 200);
+            return response()->json(['message' => 'Paid', 'payment' => $payment], 200);
         } else {
-            return response()->json(['message' => 'No Payment Found'], 404);
+            return response()->json(['message' => 'Not Paid'], 404);
         }
     }
     

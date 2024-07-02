@@ -17,7 +17,7 @@
         <form action="{{ route('parking.search') }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="car_plate_number">Car Plate Number</label>
+                <label for="car_plate_number">RFID Card Number</label>
                 <input type="text" class="form-control" id="car_plate_number" name="card_number" required>
             </div>
             <button type="submit" class="btn btn-primary">Search</button>
