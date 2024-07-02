@@ -1,4 +1,4 @@
-<!-- resources/views/plates/index.blade.php -->
+{{-- <!-- resources/views/plates/index.blade.php -->
 
 @extends('layouts.app') <!-- Assuming you have a master layout -->
 
@@ -23,5 +23,6 @@
                 @endforeach
             </tbody>
         </table>
+        <a href="{{route('parking.payment.form')}}">PAYMENT</a>
     </div>
-@endsection
+@endsection --}}

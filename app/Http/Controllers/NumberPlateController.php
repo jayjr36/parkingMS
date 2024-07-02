@@ -19,10 +19,9 @@ class NumberPlateController extends Controller
     public function upload(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // max 2MB
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
 
-        // Save the image
         $imagePath = $request->file('image')->store('number-plate-images', 'public');
 
         // Process the image and extract text from number plate using Tesseract OCR
@@ -41,6 +40,6 @@ class NumberPlateController extends Controller
         // Use Tesseract OCR to extract text from image
         $text = (new TesseractOCR($imagePath))->run();
 
-        return trim($text); // Trim whitespace characters from extracted text
+        return trim($text); 
     }
 }
