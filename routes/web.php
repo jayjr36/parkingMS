@@ -32,6 +32,9 @@ Route::get('/admin/staff/cars', [AdminController::class, 'registerStaffCarForm']
 Route::post('/admin/staff/cars', [AdminController::class,'registerStaffCar'])->name('admin.staff.cars.register');
 
 Route::get('/admin/staff/{id}', [AdminController::class, 'viewStaffDetails'])->name('admin.staff.view');
-Route::get('/admin/staff/all', [AdminController::class, 'allStaffDetails'])->name('admin.staff.all');
 
-Route::get('/admin/payments', 'AdminController@allPayments')->name('admin.payments.all');
+Route::get('/admin/payments', [AdminController::class ,'allPayments'])->name('admin.payments.all');
+
+Route::get('/admin/staff-cars', [AdminController::class, 'showStaffCars'])->name('admin.staffCars');
+
+Route::get('/list/staff', [AdminController::class, 'allStaffDetails'])->name('admin.stafflist');

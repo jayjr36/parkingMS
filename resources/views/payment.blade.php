@@ -35,7 +35,7 @@
             <div class="form-group">
                 <label for="car_plate_number">RFID Card Number</label>
                 <input type="text" class="form-control" id="car_plate_number" name="car_plate_number"
-                    value="{{ old('car_plate_number') }}" placeholder="Enter Car Plate Number">
+                    value="{{ old('car_plate_number') }}" placeholder="Enter RFID Card Number">
             </div>
 
             <div class="form-group">

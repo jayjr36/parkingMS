@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('staff_cars', function (Blueprint $table) {
             $table->id();
+            $table->string('staff_name');
+            $table->string('car_plate_number');
+            $table->string('card_number');
             $table->timestamps();
         });
     }

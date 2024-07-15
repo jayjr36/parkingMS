@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -38,6 +39,15 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    protected function redirectTo()
+    {
+        if (Auth::user()->role == 'admin') {
+            return '/admin/dashboard';
+        } else {
+            return '/parking/search';
+        }
     }
 
     /**

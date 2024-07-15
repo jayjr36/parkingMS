@@ -76,8 +76,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-ZvpUoO/+P2Qq6f+zHZi8xK/0hz1+c7ZnWxwB+bn6BoZT+9FqYpD2VFGnRA0WJw/5" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-ZzK17AyCk7g7j7hPj+2x1v2CEZwdHUM9YvTrtNPA6rZR7QlmENt/tNpiB2zxlmUn" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-woA4hId8y9i5TOZAn6K4Ck1/74pca54fHoU30ITG0ljZy0NEZPhjHl5D+l/1G8b1" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
