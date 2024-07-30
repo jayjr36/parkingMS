@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('number_plates', function (Blueprint $table) {
             $table->id();
-            $table->string('plate_number')->unique();
+            $table->string('card_no');
+            $table->string('plate_number');
+            $table->string('image_path');
             $table->timestamps();
         });
     }

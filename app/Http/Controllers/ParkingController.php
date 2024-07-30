@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\ParkingPayment;
-use App\Models\PaymentDetail;
 use Carbon\Carbon;
+use App\Models\StaffCar;
+use Illuminate\Http\Request;
+use App\Models\PaymentDetail;
+use App\Models\ParkingPayment;
 use Illuminate\Support\Facades\Auth;
 
 class ParkingController extends Controller
@@ -66,15 +67,25 @@ class ParkingController extends Controller
         $request->validate([
             'card_number' => 'required|string',
         ]);
-
+    
+        // Check if the card number belongs to a staff member
+        $isStaff = StaffCar::where('card_number', $request->card_number)->exists();
+    
+        if ($isStaff) {
+            // If the card number belongs to a staff member, parking is free
+            return response()->json(['success' => true, 'message' => 'Parking is free for staff members'], 200);
+        }
+    
+        // If not a staff member, check for payment details
         $payment = PaymentDetail::where('card_number', $request->card_number)->first();
-
+    
         if ($payment) {
-            return response()->json(['message' => 'Paid', 'payment' => $payment], 200);
+            return response()->json(['success' => true, 'payment' => $payment], 200);
         } else {
-            return response()->json(['message' => 'Not Paid'], 404);
+            return response()->json(['success' => false], 404);
         }
     }
+    
     
     public function showSearchForm()
     {
