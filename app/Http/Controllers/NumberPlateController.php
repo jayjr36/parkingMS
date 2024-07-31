@@ -17,24 +17,32 @@ class NumberPlateController extends Controller
         return view('plates', compact('plates'));
     }
     public function upload(Request $request)
-    {
-        $request->validate([
-            'card_no' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-    
-        $imagePath = $request->file('image')->store('number-plate-images', 'public');
-    
-        $extractedText = $this->extractTextFromImage(storage_path('app/public/'. $imagePath));
-    
-        $numberPlate = new NumberPlate();
-        $numberPlate->plate_number = $extractedText;
-        $numberPlate->card_no = $request->input('card_no'); 
-        $numberPlate->image_path = $imagePath; 
-        $numberPlate->save();
-    
-        return response()->json(['success' => true]);
-    }
+{
+    $request->validate([
+        'card_no' => 'required|string',
+        'image' => 'required|string', // Base64 encoded image should be a string
+    ]);
+
+    $imageData = $request->input('image');
+    $imageParts = explode(";base64,", $imageData);
+    $imageType = explode("/", $imageParts[0])[1];
+    $imageBase64 = base64_decode($imageParts[1]);
+    $imageName = uniqid() . '.' . $imageType;
+    $imagePath = 'number-plate-images/' . $imageName;
+
+    Storage::disk('public')->put($imagePath, $imageBase64);
+
+    $extractedText = $this->extractTextFromImage(storage_path('app/public/'. $imagePath));
+
+    $numberPlate = new NumberPlate();
+    $numberPlate->plate_number = $extractedText;
+    $numberPlate->card_no = $request->input('card_no');
+    $numberPlate->image_path = $imagePath;
+    $numberPlate->save();
+
+    return response()->json(['success' => true]);
+}
+
     
     
 
