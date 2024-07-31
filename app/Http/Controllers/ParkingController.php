@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NumberPlate;
 use Carbon\Carbon;
 use App\Models\StaffCar;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class ParkingController extends Controller
             'expiry_date' => $request->expiry_date,
             'cvc' => $request->cvc,
             'amount' => 1000,
-            'status' => 'success',
+            'status' => 'paid',
         ];
     
         try {
@@ -68,23 +69,21 @@ class ParkingController extends Controller
             'card_number' => 'required|string',
         ]);
     
-        // Check if the card number belongs to a staff member
         $isStaff = StaffCar::where('card_number', $request->card_number)->exists();
     
         if ($isStaff) {
-            // If the card number belongs to a staff member, parking is free
             return response()->json(['success' => true, 'message' => 'Parking is free for staff members'], 200);
         }
     
-        // If not a staff member, check for payment details
-        $payment = PaymentDetail::where('card_number', $request->card_number)->first();
+        $payment = ParkingPayment::where('card_number', $request->card_number)->where('status', 'paid')->first();
     
         if ($payment) {
             return response()->json(['success' => true, 'payment' => $payment], 200);
         } else {
-            return response()->json(['success' => false], 404);
+            return response()->json(['success' => false, 'message' => 'Payment not found or not completed'], 404);
         }
     }
+    
     
     
     public function showSearchForm()
@@ -97,7 +96,7 @@ class ParkingController extends Controller
             'card_number' => 'required|string',
         ]);
 
-        $paymentDetail = PaymentDetail::where('card_number', $request->card_number)->first();
+        $paymentDetail = NumberPlate::where('card_number', $request->card_number)->first();
         $result = null;
 
         if ($paymentDetail) {
@@ -107,7 +106,7 @@ class ParkingController extends Controller
             $paymentFee = $duration * 1000;
 
             $result = [
-                'car_plate_number' => $paymentDetail->car_plate_number,
+                'car_plate_number' => $paymentDetail->plate_number,
                 'time_in' => $timeIn,
                 'payment_fee' => $paymentFee,
             ];
