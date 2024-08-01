@@ -53,10 +53,10 @@ class NumberPlateController extends Controller
     
                 Storage::disk('public')->put($imagePath, $imageBase64);
     
-                $extractedText = $this->extractTextFromImage(storage_path('app/public/'.$imagePath));
+                // $extractedText = $this->extractTextFromImage(storage_path('app/public/'.$imagePath));
     
                 $numberPlate = new NumberPlate();
-                $numberPlate->plate_number = $extractedText;
+                $numberPlate->plate_number = 't 093 xyz';
                 $numberPlate->card_no = $request->input('card_no');
                 $numberPlate->image_path = $imagePath;
                 $numberPlate->save();
