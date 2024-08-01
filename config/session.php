@@ -200,7 +200,6 @@ return [
     */
 
     'same_site' => env('SESSION_SAME_SITE', 'lax'),
-
     /*
     |--------------------------------------------------------------------------
     | Partitioned Cookies
@@ -211,7 +210,5 @@ return [
     | when flagged "secure" and the Same-Site attribute is set to "none".
     |
     */
-
     'partitioned' => env('SESSION_PARTITIONED_COOKIE', false),
-
 ];
