@@ -12,6 +12,8 @@ class PaymentDetail extends Model
     protected $fillable = [
         'car_plate_number',
         'card_number',
+        'image_path',
+        'parking_slot'
     ];
 
     protected $dates = [

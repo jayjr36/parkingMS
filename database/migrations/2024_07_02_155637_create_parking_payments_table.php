@@ -14,12 +14,9 @@ return new class extends Migration
        
         Schema::create('parking_payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('car_plate_number', 10);
-            $table->string('card_number', 16);
-            $table->string('expiry_date', 7); // Assuming format MM/YYYY, varchar(7)
-            $table->unsignedInteger('cvc');
-            $table->unsignedInteger('amount');
+           $table->string('card_number');
+            $table->string('payment_fee');
+            $table->string('time_spent');
             $table->string('status')->default('pending');
             $table->timestamps();
         });

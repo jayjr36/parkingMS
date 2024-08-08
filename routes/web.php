@@ -38,3 +38,5 @@ Route::get('/admin/payments', [AdminController::class ,'allPayments'])->name('ad
 Route::get('/admin/staff-cars', [AdminController::class, 'showStaffCars'])->name('admin.staffCars');
 
 Route::get('/list/staff', [AdminController::class, 'allStaffDetails'])->name('admin.stafflist');
+
+Route::get('/parking-slots', [ParkingController::class, 'showParkingSlots'])->name('parking.slots.index');

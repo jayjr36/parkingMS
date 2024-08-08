@@ -14,13 +14,17 @@ class PaymentDetailSeeder extends Seeder
     public function run(): void
     {
             PaymentDetail::create([
-                'car_plate_number' => 'T 123 ABC',
+                'car_plate_number' => 'T 564 EAC',
                 'card_number' => '222',
+                'image_path' => '',
+                'parking_slot' => 2
             ]);
     
             PaymentDetail::create([
-                'car_plate_number' => 'T 456 XYZ',
+                'car_plate_number' => 'T 215 DZY',
                 'card_number' => '493',
+                    'image_path' => '',
+                'parking_slot' => 4
             ]);
     
             // Add more sample data as needed

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('car_plate_number');
             $table->string('card_number');
+            $table->string('image_path');
+            $table->string('parking_slot');
             $table->timestamps();
         });
     }

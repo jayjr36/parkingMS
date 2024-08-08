@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolesTableSeeder::class,
             AdminSeeder::class,
-            PaymentDetailSeeder::class
-            // Other seeders you may have
+            PaymentDetailSeeder::class,
+            ParkingSlotSeeder::class
         ]);
         $this->call(PaymentDetailSeeder::class);
     }
